@@ -5,8 +5,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dulce Capricho - Nuestras Especialidades</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Montserrat:ital,wght@1,600&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Montserrat:wght@600&family=Quicksand:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Paleta de Colores Dulces */
+        :root {
+            --rosa-pastel: #ffdeeb;
+            --rosa-fuerte: #ff85a2;
+            --chocolate: #5d4037;
+            --texto-suave: #7d6e6a;
+            --fondo: #fffafb;
+            --blanco: #ffffff;
+            --verde-wa: #25d366;
+        }
+
+        /* Reset Básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--fondo);
+            color: var(--chocolate);
+            line-height: 1.6;
+        }
+
+        /* Header con Estilo Banner */
+        .banner-header {
+            background-color: var(--rosa-pastel);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 4px dashed var(--rosa-fuerte);
+            margin-bottom: 20px;
+        }
+
+        .banner-title {
+            font-family: 'Grand Hotel', cursive;
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--rosa-fuerte);
+            text-shadow: 1px 1px 0px white;
+        }
+
+        .slogan-panel {
+            margin-top: 5px;
+        }
+
+        .banner-slogan {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--chocolate);
+        }
+
+        /* Contenedor Principal */
+        main {
+            padding: 15px;
+            max-width: 600px; /* Limita el ancho en tablets/PC */
+            margin: 0 auto 100px auto; /* Espacio extra abajo para el botón flotante */
+        }
+
+        /* Tarjetas de Producto */
+        .item {
+            background: var(--blanco);
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.15);
+            border: 1px solid rgba(255, 133, 162, 0.1);
+        }
+
+        .item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover; /* Recorta la imagen para que encaje perfecto sin deformarse */
+            display: block;
+        }
+
+        .info {
+            padding: 20px;
+        }
+
+        .info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--rosa-fuerte);
+        }
+
+        .info p {
+            font-size: 1rem;
+            color: var(--texto-suave);
+            margin-bottom: 20px;
+        }
+
+        /* Fila de Detalles Inferiores */
+        .precio-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px dashed var(--rosa-pastel);
+        }
+
+        .precio {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #2ecc71;
+        }
+
+        .rating {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .tag-fav {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Botón de WhatsApp Pegajoso (Sticky/Fixed) */
+        .btn-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            left: 10%;
+            right: 10%;
+            background-color: var(--verde-wa);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: var(--texto-suave);
+            padding: 20px;
+        }
+
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 380px) {
+            .banner-title { font-size: 2.8rem; }
+            .item img { height: 200px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -20,13 +182,13 @@
     <main>
         <section class="specials">
             
-            <div class="item highlighted">
+            <div class="item">
                 <img src="imagenes/pastel-1.png" alt="Mojadito de Piña">
                 <div class="info">
                     <h3>Mojadito de Piña</h3>
                     <p>Pastelito esponjoso bañado en almíbar, con crema de vainilla y trozos de piña jugosa.</p>
                     <div class="precio-row">
-                        <span class="precio">$40.00</span>
+                        <span class="precio">$50.00</span>
                         <div class="rating">⭐⭐⭐⭐⭐</div>
                     </div>
                 </div>
@@ -38,20 +200,22 @@
                     <h3>Pay de Limón</h3>
                     <p>Pay cremoso sobre base crujiente, coronado con merengue ligero y limón fresco.</p>
                     <div class="precio-row">
-                        <span class="precio">$35.00</span>
-                        <div class="tag-row"><span class="tag tag-fav">🔥 Top</span></div>
+                        <span class="precio">$40.00</span>
+                        <span class="tag-fav">🔥 Top Ventas</span>
                     </div>
                 </div>
             </div>
             
             <footer>
-               📍 Entregas en Monterrey y área metropolitana
+                📍 Entregas en Monterrey y área metropolitana<br>
+                © 2024 Dulce Capricho
             </footer>
         </section>
     </main>
 
-  <a href="https://wa.me/528111944439?text=Hola!%20Me%20gustaría%20hacer%20un%20pedido%20en%20Dulce%20Capricho." class="btn-whatsapp" target="_blank">
+    <a href="https://wa.me/528126503919?text=Hola!%20Me%20gustaría%20hacer%20un%20pedido%20en%20Dulce%20Capricho." class="btn-whatsapp" target="_blank">
         ¡Hacer mi Pedido Ya! 📲
     </a>
+
 </body>
 </html>
