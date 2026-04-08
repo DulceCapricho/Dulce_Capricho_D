@@ -14,14 +14,14 @@ body {
 
 /* BARRA ROSA - HEADER */
 .banner-header {
-    background-color: #ffdbe0;
-    min-height: 100px; /* Reducida un poco para que no se vea gigante */
+    background-color: #FFC0CB;
+    min-height: 100px;
     padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: sticky;
-    top: 0;
+    /* Quitamos el sticky universal y lo ponemos relativo por defecto */
+    position: relative; 
     z-index: 1000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -189,4 +189,25 @@ footer {
     padding: 20px 20px 100px 20px; /* Padding extra abajo para que el botón no tape el texto */
     font-size: 0.8rem;
     color: #888;
+}
+
+/* Solo para computadoras y tablets grandes */
+@media (min-width: 768px) {
+    .banner-header {
+        position: sticky;
+        top: 0;
+    }
+}
+
+/* Solo para celulares (opcional: hacer el logo un poco más pequeño en móvil) */
+@media (max-width: 767px) {
+    .header-logo {
+        height: 150px; /* En celular 200px es mucho, 150px sigue siendo grande pero mejor */
+        margin-top: -20px;
+        margin-bottom: -30px;
+    }
+    
+    .banner-slogan {
+        font-size: 1.1rem; /* Slogan un poco más pequeño en celular */
+    }
 }
