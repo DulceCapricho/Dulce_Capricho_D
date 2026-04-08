@@ -1,192 +1,268 @@
-/* =========================================
-   ESTILOS BASE
-   ========================================= */
+/* Paleta de Colores Dulces */
+:root {
+    --rosa-pastel: #ffe4ef;
+    --rosa-fuerte: #ff6b8f;
+    --chocolate: #4a332d;
+    --texto-suave: #8a7b77;
+    --fondo: #fff5f8;
+    --blanco: #ffffff;
+    --verde-wa-1: #25d366;
+    --verde-wa-2: #128C7E;
+}
+
+/* Reset Básico */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
+/* --- FONDO CON MOVIMIENTO NOTORIO --- */
 body {
     font-family: 'Quicksand', sans-serif;
-    background-color: #fff5f7;
-    color: #333;
+    background-color: var(--fondo);
+    
+    /* Puntos con mayor opacidad (0.3) para que se noten más */
+    background-image: 
+        radial-gradient(rgba(255, 107, 143, 0.3) 4px, transparent 4px),
+        radial-gradient(rgba(255, 107, 143, 0.3) 4px, transparent 4px);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    
+    color: var(--chocolate);
     line-height: 1.6;
-    overflow-x: hidden;
+    min-height: 100vh;
+    
+    /* Animación más rápida para que el movimiento sea evidente */
+    animation: moverPuntos 15s linear infinite;
 }
 
-/* =========================================
-   HEADER Y LOGO GIGANTE
-   ========================================= */
+@keyframes moverPuntos {
+    0% { background-position: 0 0, 30px 30px; }
+    100% { background-position: 120px 120px, 150px 150px; }
+}
+
+/* Header Moderno */
 .banner-header {
-    background-color: #FFC0CB;
-    height: 180px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute; /* Se queda arriba y desaparece al bajar */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(-45deg, var(--rosa-pastel), #fff0f5, #ffd6e6, var(--rosa-pastel));
+    background-size: 400% 400%;
+    animation: fondoDinamico 10s ease infinite;
+    padding: 80px 20px; /* Un poco más de aire */
+    text-align: center;
+    border-bottom: 3px solid rgba(255, 107, 143, 0.2);
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(255, 107, 143, 0.1);
 }
 
-.header-logo {
-    height: 320px; /* Logo Mega Grande */
-    width: auto;
-    display: block;
-    margin-top: -30px; 
-    margin-bottom: -50px; 
-    filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15));
-    animation: respiroLogo 5s ease-in-out infinite;
-    z-index: 10;
-    transition: transform 0.3s ease;
+@keyframes fondoDinamico {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-@keyframes respiroLogo {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15)); }
-    50% { transform: scale(1.04); filter: drop-shadow(0px 12px 20px rgba(216, 27, 96, 0.25)); }
+/* --- TÍTULO: MÁS GRANDE Y RESPIRACIÓN FUERTE --- */
+.banner-title {
+    font-family: 'Grand Hotel', cursive;
+    font-size: 5.5rem; /* Tamaño aumentado */
+    margin: 0;
+    color: var(--rosa-fuerte);
+    display: inline-block;
+    /* Sombra más fuerte para resaltar */
+    text-shadow: 3px 3px 0px white, 0 8px 20px rgba(255, 107, 143, 0.4);
+    animation: flotarTitulo 3.5s ease-in-out infinite;
 }
 
-/* ESPACIO PARA EL CONTENIDO */
+@keyframes flotarTitulo {
+    0% { 
+        transform: translateY(0px) scale(1); 
+    }
+    50% { 
+        transform: translateY(-15px) scale(1.1); /* Sube más y se agranda */
+        text-shadow: 3px 3px 0px white, 0 25px 35px rgba(255, 107, 143, 0.3);
+    }
+    100% { 
+        transform: translateY(0px) scale(1); 
+    }
+}
+
+.slogan-panel {
+    margin-top: 15px;
+}
+
+.banner-slogan {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--chocolate);
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+/* Contenedor Principal */
 main {
-    padding-top: 200px; /* Distancia ideal entre logo y primer producto */
+    padding: 0 20px;
+    max-width: 650px;
+    margin: 0 auto 150px auto; /* Más espacio abajo por el botón */
 }
 
-/* =========================================
-   PRODUCTOS
-   ========================================= */
-.specials {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
+/* Tarjetas de Producto */
 .item {
-    background: white;
-    border-radius: 20px;
+    background: var(--blanco);
+    border-radius: 25px; /* Bordes más redondeados */
     overflow: hidden;
     margin-bottom: 35px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255, 228, 239, 0.8);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(74, 51, 45, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: entrarItem 0.8s ease-out both;
 }
 
-.img-container img {
+@keyframes entrarItem {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(255, 107, 143, 0.3);
+}
+
+.img-container {
     width: 100%;
-    height: 280px;
-    object-fit: cover;
+    height: 350px; 
+    overflow: hidden;
 }
 
-.info { padding: 25px; }
-.info h3 { font-family: 'Montserrat', sans-serif; color: #d81b60; font-size: 1.5rem; margin-bottom: 10px; }
-.precio { font-size: 1.8rem; font-weight: 800; color: #2ecc71; }
-.tag-fav { background: #fff0f3; color: #ff4757; padding: 8px 15px; border-radius: 25px; font-weight: bold; font-size: 0.85rem; }
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    background-color: #fce4ec; 
+}
 
-/* =========================================
-   CUADROS DE CONFIANZA RESALTADOS
-   ========================================= */
-.trust-section {
+.item:hover img {
+    transform: scale(1.1); 
+}
+
+.info {
+    padding: 30px;
+}
+
+.info h3 {
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+    color: var(--rosa-fuerte);
+    font-weight: 800;
+}
+
+.info p {
+    font-size: 1.05rem;
+    color: var(--texto-suave);
+    margin-bottom: 25px;
+}
+
+.precio-row {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 2px dashed var(--rosa-pastel);
+}
+
+.precio {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #27ae60;
+}
+
+.tag-fav {
+    background: linear-gradient(135deg, #fff3cd, #ffe69c);
+    color: #856404;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Sección de Confianza */
+.trust-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     margin: 40px 0;
 }
 
 .badge {
-    background-color: white;
-    border: 2px solid #FFC0CB;
-    border-radius: 15px;
+    background: var(--blanco);
     padding: 20px;
-    text-align: center;
-    min-width: 150px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    animation: respiroBadge 4s ease-in-out infinite;
-}
-
-.badge:last-child { animation-delay: 0.5s; }
-
-@keyframes respiroBadge {
-    0%, 100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-    50% { transform: scale(1.06); border-color: #d81b60; box-shadow: 0 8px 20px rgba(255, 192, 203, 0.4); }
-}
-
-.badge span { font-size: 1.8rem; display: block; margin-bottom: 10px; }
-.badge p { font-weight: 800; color: #d81b60; font-size: 0.9rem; margin: 0; }
-
-/* =========================================
-   HISTORIA Y PIE
-   ========================================= */
-.about-us {
-    background: #ffe4e9;
-    padding: 30px;
     border-radius: 20px;
     text-align: center;
-    margin-bottom: 40px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+    border: 1px solid var(--rosa-pastel);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
 }
 
-footer {
+.badge span { font-size: 2.5rem; margin-bottom: 8px; }
+.badge p { font-weight: 700; color: var(--chocolate); }
+
+/* Sobre Nosotros */
+.about-us {
     text-align: center;
-    padding: 30px 20px 120px 20px;
-    font-size: 0.9rem;
-    color: #888;
+    background: var(--blanco);
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(255, 107, 143, 0.1);
+    border-top: 5px solid var(--rosa-fuerte);
 }
 
-/* =========================================
-   BOTÓN WHATSAPP CENTRADO
-   ========================================= */
-/* BOTÓN WHATSAPP LARGO Y PROFESIONAL */
+/* --- BOTÓN WHATSAPP: RESPIRACIÓN EXAGERADA --- */
 .btn-whatsapp {
     position: fixed;
     bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #25d366;
+    left: 10%;
+    right: 10%;
+    background: linear-gradient(135deg, var(--verde-wa-1), var(--verde-wa-2));
     color: white;
-    
-    /* AJUSTE DE LARGO: Aumentamos el padding a los lados (60px) */
-    padding: 18px 60px; 
-    /* Opcional: puedes definir un ancho mínimo si lo quieres siempre igual */
-    min-width: 280px; 
-    
+    text-align: center;
+    padding: 20px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 800; /* Texto más negrita para que resalte */
-    font-size: 1.1rem;
-    text-align: center;
-    white-space: nowrap;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    
-    /* Animación de respiro */
-    animation: respiroBoton 3s ease-in-out infinite;
-    transition: background 0.3s ease, transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    z-index: 999;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    animation: respirarFuerte 2.5s infinite ease-in-out;
 }
 
-@keyframes respiroBoton {
-    0%, 100% { 
-        transform: translateX(-50%) scale(1); 
-    }
+@keyframes respirarFuerte {
+    0% { transform: scale(1); }
     50% { 
-        transform: translateX(-50%) scale(1.05); 
-        box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+        transform: scale(1.1); /* Crecimiento más marcado */
+        box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6), 0 0 0 15px rgba(37, 211, 102, 0); 
     }
+    100% { transform: scale(1); }
 }
 
-.btn-whatsapp:hover {
-    animation-play-state: paused;
-    background-color: #128c7e;
-    transform: translateX(-50%) scale(1.1);
+/* Footer */
+footer {
+    text-align: center;
+    padding-bottom: 40px;
+    font-size: 0.9rem;
+    color: var(--texto-suave);
 }
 
-/* Ajuste para que en celulares se vea aún más largo (casi toda la pantalla) */
-@media (max-width: 767px) {
-    .btn-whatsapp {
-        width: 90%; /* Ocupa el 90% del ancho del celular */
-        padding: 15px 20px;
-        font-size: 1rem;
-    }
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+    .banner-title { font-size: 3.5rem; } /* Se ajusta para que no desborde */
+    .img-container { height: 300px; }
+    .trust-section { grid-template-columns: 1fr; }
+    .btn-whatsapp { font-size: 1.1rem; left: 5%; right: 5%; }
 }
