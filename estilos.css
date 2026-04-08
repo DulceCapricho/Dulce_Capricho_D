@@ -1,4 +1,6 @@
-/* Reset básico */
+/* =========================================
+   ESTILOS BASE
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -10,61 +12,51 @@ body {
     background-color: #fff5f7;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* HEADER - LA BARRA QUE DESAPARECE AL BAJAR */
+/* =========================================
+   HEADER Y LOGO GIGANTE
+   ========================================= */
 .banner-header {
     background-color: #FFC0CB;
-    min-height: 100px;
-    padding: 10px 0;
+    height: 180px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Con Absolute la barra se queda arriba y desaparece al hacer scroll */
-    position: absolute;
+    position: absolute; /* Se queda arriba y desaparece al bajar */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* LOGO CON RESPIRO */
 .header-logo {
-    height: 200px; 
+    height: 320px; /* Logo Mega Grande */
     width: auto;
     display: block;
-    margin-top: -35px; 
-    margin-bottom: -45px; 
-    z-index: 5;
-    animation: respiroLogo 4s ease-in-out infinite;
+    margin-top: -30px; 
+    margin-bottom: -50px; 
+    filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15));
+    animation: respiroLogo 5s ease-in-out infinite;
+    z-index: 10;
+    transition: transform 0.3s ease;
 }
 
 @keyframes respiroLogo {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); }
-    50% { transform: scale(1.05); filter: drop-shadow(0px 8px 15px rgba(216, 27, 96, 0.2)); }
+    0%, 100% { transform: scale(1); filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.15)); }
+    50% { transform: scale(1.04); filter: drop-shadow(0px 12px 20px rgba(216, 27, 96, 0.25)); }
 }
 
-.banner-slogan {
-    font-family: 'Grand Hotel', cursive;
-    font-size: 1.4rem;
-    color: #d81b60;
-    margin-top: 15px;
-}
-
-/* ESPACIO PARA QUE EL CONTENIDO NO SE TAPE CON EL LOGO ABSOLUTO */
+/* ESPACIO PARA EL CONTENIDO */
 main {
-    padding-top: 200px; /* Ajusta este valor si el logo tapa el primer pastel */
+    padding-top: 200px; /* Distancia ideal entre logo y primer producto */
 }
 
-/* SECCIÓN DE PRODUCTOS */
+/* =========================================
+   PRODUCTOS
+   ========================================= */
 .specials {
     max-width: 600px;
     margin: 0 auto;
@@ -73,71 +65,128 @@ main {
 
 .item {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    margin-bottom: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 35px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
 .img-container img {
     width: 100%;
-    height: 250px;
+    height: 280px;
     object-fit: cover;
 }
 
-.info { padding: 20px; }
-.info h3 { font-family: 'Montserrat', sans-serif; color: #d81b60; margin-bottom: 10px; }
+.info { padding: 25px; }
+.info h3 { font-family: 'Montserrat', sans-serif; color: #d81b60; font-size: 1.5rem; margin-bottom: 10px; }
+.precio { font-size: 1.8rem; font-weight: 800; color: #2ecc71; }
+.tag-fav { background: #fff0f3; color: #ff4757; padding: 8px 15px; border-radius: 25px; font-weight: bold; font-size: 0.85rem; }
 
-.precio-row {
+/* =========================================
+   CUADROS DE CONFIANZA RESALTADOS
+   ========================================= */
+.trust-section {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 0;
 }
 
-.precio { font-size: 1.5rem; font-weight: 800; color: #2ecc71; }
-.tag-fav { background: #fff0f3; color: #ff4757; padding: 5px 10px; border-radius: 20px; font-weight: bold; }
-
-/* SECCIONES INFERIORES */
-.trust-section { display: flex; justify-content: space-around; margin: 30px 0; }
-.badge { text-align: center; font-weight: bold; font-size: 0.9rem; }
-.about-us { background: #ffe4e9; padding: 25px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
-
-/* BOTÓN WHATSAPP CENTRADO CON RESPIRO */
-.btn-whatsapp {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #25d366;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: respiroBoton 3s ease-in-out infinite;
+.badge {
+    background-color: white;
+    border: 2px solid #FFC0CB;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    min-width: 150px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    animation: respiroBadge 4s ease-in-out infinite;
 }
 
-@keyframes respiroBoton {
-    0%, 100% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+.badge:last-child { animation-delay: 0.5s; }
+
+@keyframes respiroBadge {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    50% { transform: scale(1.06); border-color: #d81b60; box-shadow: 0 8px 20px rgba(255, 192, 203, 0.4); }
+}
+
+.badge span { font-size: 1.8rem; display: block; margin-bottom: 10px; }
+.badge p { font-weight: 800; color: #d81b60; font-size: 0.9rem; margin: 0; }
+
+/* =========================================
+   HISTORIA Y PIE
+   ========================================= */
+.about-us {
+    background: #ffe4e9;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 footer {
     text-align: center;
-    padding: 20px 20px 100px 20px;
-    font-size: 0.8rem;
+    padding: 30px 20px 120px 20px;
+    font-size: 0.9rem;
     color: #888;
 }
 
-/* AJUSTES PARA CELULARES */
+/* =========================================
+   BOTÓN WHATSAPP CENTRADO
+   ========================================= */
+/* BOTÓN WHATSAPP LARGO Y PROFESIONAL */
+.btn-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #25d366;
+    color: white;
+    
+    /* AJUSTE DE LARGO: Aumentamos el padding a los lados (60px) */
+    padding: 18px 60px; 
+    /* Opcional: puedes definir un ancho mínimo si lo quieres siempre igual */
+    min-width: 280px; 
+    
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800; /* Texto más negrita para que resalte */
+    font-size: 1.1rem;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    
+    /* Animación de respiro */
+    animation: respiroBoton 3s ease-in-out infinite;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes respiroBoton {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1); 
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.05); 
+        box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+    }
+}
+
+.btn-whatsapp:hover {
+    animation-play-state: paused;
+    background-color: #128c7e;
+    transform: translateX(-50%) scale(1.1);
+}
+
+/* Ajuste para que en celulares se vea aún más largo (casi toda la pantalla) */
 @media (max-width: 767px) {
-    main { padding-top: 160px; }
-    .header-logo { height: 160px; margin-top: -20px; margin-bottom: -30px; }
-    .banner-slogan { font-size: 1.2rem; }
+    .btn-whatsapp {
+        width: 90%; /* Ocupa el 90% del ancho del celular */
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
 }
